@@ -37,7 +37,6 @@ class CardGame {
     }
 
     StartButton(btnAttribute) {
-            console.log(btnAttribute);
             this.HideElement("#startGameBtn");
             this.HideElement("#memoryGameHeader");
             this.HideElement(".imageOnStartScreen");
@@ -66,7 +65,6 @@ class CardGame {
     }
 
     RestartGame(btnAttribute) {
-            console.log("y");
             document.querySelector("#scores").innerHTML = "Очки: 0"
             for (var i = 1; i <= 18; i++) {
                 document.getElementById(i).removeAttribute("src");
@@ -145,7 +143,6 @@ class CardGame {
                         this.ShowBlockElement("#endGameBtn");
                         document.querySelector("#memoryGameEndHeader").innerHTML = "Поздравляем!<br>Ваш итоговый счет: " + this.scores;
                     }
-                    console.log(this.indOfExistCards.length);
                 }
             })(i);
         }
@@ -155,17 +152,14 @@ class CardGame {
 document.querySelector("#startGameBtn").onclick = function() {
     var game = new CardGame();
     game.RestartGame("#startGameBtn");
-    console.log("!" );
 }
 
 document.querySelector("#restartGameBtn").onclick = function() {
     var game = new CardGame();
     game.RestartGame("#restartGameBtn");
-    console.log("!!");
 }
 
 document.querySelector("#endGameBtn").onclick = function() {
     var game = new CardGame();
     game.RestartGame("#endGameBtn");
-    console.log("!!!");
 }
