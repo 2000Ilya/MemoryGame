@@ -1,0 +1,128 @@
+.back, .front {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.wrapper {
+  margin: 19px auto;
+  height: 470px;
+  width: 700px;
+  grid-gap: 3.2%;
+  grid-template-columns: repeat(6, 14%);
+  grid-template-rows: 31.2% 31.2% 31.2%;
+  grid-auto-flow: row;
+  background-color: #1C7430;
+}
+
+body{
+  background-color: #1C7430;
+}
+
+.toolBar{
+  margin-top: 54px;
+  margin-right: auto;
+  margin-left: auto;
+  height: 19px;
+  width: 700px;
+  grid-template-columns: 16% 12%;
+  grid-gap: 72%;
+  color: white;
+  background-color: #1C7430;
+}
+
+.wrapper, .toolBar {
+  display: none;
+}
+
+#restartGameBtn, #scores{
+  height: 100%;
+  width: 100%;
+  background-color: #1C7430;
+  color: white;
+  display: block;
+  opacity: 0.8;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}
+
+#scores{
+  float: right;
+}
+
+.imageOnStartScreen {
+  margin: 20vh auto auto auto;
+  width: 503px;
+  height: 262px;
+}
+
+#memoryGameHeader {
+  margin: 20px auto 0;
+  height: 38px;
+  width: 219px;
+  font-size: 28px;
+  letter-spacing: 0.2px;
+  opacity: 0.85;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+#startGameBtn{
+  margin: 34px auto;
+  height: 42px;
+  width: 144px;
+  font-size: 16px;
+  letter-spacing: 0;
+  opacity: 0.85;
+  color: #1C7430;
+  border-radius: 4px;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+  outline: none;
+}
+
+#startGameBtn, #memoryGameHeader, .imageOnStartScreen {
+  display: block;
+}
+
+.imageOnStartScreen {
+  font-family: 'OpenSans', sans-serif;
+}
+
+.imageOnEndScreen {
+  margin: 15vh auto auto auto;
+  width: 516px;
+  height: 275px;
+}
+
+#memoryGameEndHeader {
+  margin: 20px auto 0;
+  height: 70px;
+  width: 304px;
+  font-size: 24px;
+  letter-spacing: 0.15px;
+  opacity: 0.85;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 35px;
+}
+
+#endGameBtn{
+  margin: 40px auto;
+  height: 42px;
+  width: 128px;
+  font-size: 16px;
+  letter-spacing: 0;
+  opacity: 0.85;
+  color: #1C7430;
+  border-radius: 4px;
+  padding: 10px 30px 10px 30px;
+  text-align: center;
+  outline: none;
+}
+
+.imageOnEndScreen, #endGameBtn, #memoryGameEndHeader {
+  display: none;
+}
