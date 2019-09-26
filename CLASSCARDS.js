@@ -14,7 +14,7 @@ class CardGame {
     }
 
     CloseCards(cardIndex) {
-        document.getElementById(cardIndex).setAttribute("src", "/Users/ilya/Music/card.png");
+        document.getElementById(cardIndex).setAttribute("src", "card.png");
         document.getElementById(cardIndex).setAttribute("class", "back");
     }
 
@@ -32,7 +32,7 @@ class CardGame {
 
     ShowCards() {
         for (var i = 1; i <= 18; i++) {
-            document.getElementById(i).setAttribute("src", "/Users/ilya/Music/card.png");
+            document.getElementById(i).setAttribute("src", "card.png");
         }
     }
 
@@ -50,7 +50,7 @@ class CardGame {
 
     CardDesk() {
         for (var i = 1; i <= 18; i++) {
-            this.cardsImage[i] = {isCardClosed:true, image:"/Users/ilya/Music/Cards/" + this.cards[i - 1] + ".png"};
+            this.cardsImage[i] = {isCardClosed:true, image:this.cards[i - 1] + ".png"};
         }
     }
 
