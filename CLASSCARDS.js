@@ -9,13 +9,16 @@ class CardGame {
     }
 
     HideCards(cardIndex) {
-        document.getElementById(cardIndex).removeAttribute("src");
-        document.getElementById(cardIndex).removeAttribute("class");
+        document.getElementById(cardIndex).classList.toggle('hover');
+        var e = document.getElementById(cardIndex).children;
+        for(var child of e){
+            child.removeAttribute("class");
+            child.removeAttribute("src");
+        }
     }
 
     CloseCards(cardIndex) {
-        document.getElementById(cardIndex).setAttribute("src", "card.png");
-        document.getElementById(cardIndex).setAttribute("class", "back");
+        document.getElementById(cardIndex).classList.toggle('hover');
     }
 
     HideElement(elemAttr) {
@@ -32,7 +35,8 @@ class CardGame {
 
     ShowCards() {
         for (var i = 1; i <= 18; i++) {
-            document.getElementById(i).setAttribute("src", "card.png");
+            document.getElementById(i).lastElementChild.setAttribute("src", this.cardsImage[i]["image"]);
+            document.getElementById(i).classList.toggle('hover');
         }
     }
 
@@ -67,8 +71,11 @@ class CardGame {
     RestartGame() {
         document.querySelector("#scores").innerHTML = "Очки: 0"
         for (var i = 1; i <= 18; i++) {
-            document.getElementById(i).removeAttribute("src");
-            document.getElementById(i).setAttribute("class", "back");
+            document.getElementById(i).lastElementChild.removeAttribute("src");
+            document.getElementById(i).classList.remove('hover');
+            document.getElementById(i).lastElementChild.setAttribute("class", "front");
+            document.getElementById(i).firstElementChild.setAttribute("src", "card.png");
+            document.getElementById(i).firstElementChild.setAttribute("class", "back");
         }
         this.cards = [
             "2C", "2D", "2H", "2S",
@@ -102,13 +109,8 @@ class CardGame {
         for (var i = 1; i <= 18; i++) {
             document.getElementById(i).onclick = ((i) => {
                 return () => {
-                    for (var element of this.indOfDeletedCards){
-                        var index = this.indOfExistCards.indexOf(element);
-                        if (index != -1) this.indOfExistCards.splice(index, 1);
-                    } 
-                    if (openCards.length < 2 && this.cardsImage[i]["isCardClosed"] && document.getElementById(i).getAttribute("class") != "front" && this.cardsImage[i]["isCardClosed"] != "off") {
-                        document.getElementById(i).setAttribute("src", this.cardsImage[i]["image"]);
-                        document.getElementById(i).setAttribute("class", "front");
+                    document.getElementById(i).classList.toggle('hover');
+                    if (openCards.length < 2 && this.cardsImage[i]["isCardClosed"] && !document.getElementById(i).classList.contains('hover')  && this.cardsImage[i]["isCardClosed"] != "off") {
                         this.cardsImage[i]["isCardClosed"] = false;
                         openCards.push(this.cardsImage[i]["image"]);
                     } 
@@ -137,6 +139,10 @@ class CardGame {
                         }
                         openCards = [];
                     }
+                    for (var element of this.indOfDeletedCards){
+                        var index = this.indOfExistCards.indexOf(element);
+                        if (index != -1) this.indOfExistCards.splice(index, 1);
+                    } 
                     if (this.indOfExistCards.length == 0) {
                         this.HideElement(".wrapper");
                         this.HideElement(".toolBar");

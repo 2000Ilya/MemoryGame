@@ -1,9 +1,24 @@
-.back, .front {
+.flip-container, .back, .front {
   width: 100%;
   height: 100%;
   border-radius: 10px;
   cursor: pointer;
 }
+
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+.front {
+  transform: rotateY(360deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
 .back:hover {
   box-shadow: 0px 0px 20px 0px #77f400;
 }
@@ -44,6 +59,7 @@ body{
 }
 
 #restartGameBtn, #scores{
+  float: right;
   height: 100%;
   width: 100%;
   background-color: #1C7430;
@@ -54,6 +70,10 @@ body{
   font-size: 14px;
   border: none;
   outline: none;
+}
+
+#restartGameBtn {
+  border-radius: 10px;
 }
 
 #scores{
@@ -147,4 +167,13 @@ body{
   background-color: white;
   color: #1C7430;
   cursor: pointer;
+}
+
+.flip-container {
+  transition: 0.5s;
+  transform-style: preserve-3d;
+}
+
+.flip-container.hover{
+  transform: rotateY(180deg);
 }
