@@ -36,7 +36,7 @@ class CardGame {
         }
     }
 
-    StartButton(btnAttribute) {
+    StartButton() {
         this.HideElement("#startGameBtn");
         this.HideElement("#memoryGameHeader");
         this.HideElement(".imageOnStartScreen");
@@ -64,7 +64,7 @@ class CardGame {
         }
     }
 
-    RestartGame(btnAttribute) {
+    RestartGame() {
         document.querySelector("#scores").innerHTML = "Очки: 0"
         for (var i = 1; i <= 18; i++) {
             document.getElementById(i).removeAttribute("src");
@@ -89,7 +89,7 @@ class CardGame {
         this.indOfExistCards = [];
         this.indOfDeletedCards = [];
         this.cardsImage = [];
-        this.StartButton(btnAttribute);
+        this.StartButton();
         this.FillIndexes();
         this.GetRandomCards();
         this.CardDesk();
@@ -102,6 +102,10 @@ class CardGame {
         for (var i = 1; i <= 18; i++) {
             document.getElementById(i).onclick = ((i) => {
                 return () => {
+                    for (var element of this.indOfDeletedCards){
+                        var index = this.indOfExistCards.indexOf(element);
+                        if (index != -1) this.indOfExistCards.splice(index, 1);
+                    } 
                     if (openCards.length < 2 && this.cardsImage[i]["isCardClosed"] && document.getElementById(i).getAttribute("class") != "front" && this.cardsImage[i]["isCardClosed"] != "off") {
                         document.getElementById(i).setAttribute("src", this.cardsImage[i]["image"]);
                         document.getElementById(i).setAttribute("class", "front");
@@ -114,7 +118,7 @@ class CardGame {
                                 setTimeout(this.HideCards, 500, j);
                                 this.cardsImage[j]["isCardClosed"] = "off";
                                 this.indOfDeletedCards.push(j);
-                                this.scores += this.indOfExistCards.length * 42;
+                                this.scores += ((this.indOfExistCards.length / 2) * 42);
                                 document.querySelector("#scores").innerHTML = "Очки: " + this.scores;
                             }
                         }
@@ -125,16 +129,14 @@ class CardGame {
                             if (this.cardsImage[j]["isCardClosed"] != "off" && !this.cardsImage[j]["isCardClosed"]) {
                                 setTimeout(this.CloseCards, 500, j);
                                 this.cardsImage[j]["isCardClosed"] = true;
-                                this.scores -= this.indOfDeletedCards.length * 42;
+                                if (this.indOfDeletedCards.length != 0) {
+                                    this.scores -= ((this.indOfDeletedCards.length / 2) * 42);
+                                }
                                 document.querySelector("#scores").innerHTML = "Очки: " + this.scores;
                             }
                         }
                         openCards = [];
                     }
-                    for (var element of this.indOfDeletedCards){
-                        var index = this.indOfExistCards.indexOf(element);
-                        if (index != -1) this.indOfExistCards.splice(index, 1);
-                    } 
                     if (this.indOfExistCards.length == 0) {
                         this.HideElement(".wrapper");
                         this.HideElement(".toolBar");
@@ -151,15 +153,15 @@ class CardGame {
 
 document.querySelector("#startGameBtn").onclick = function() {
     var game = new CardGame();
-    game.RestartGame("#startGameBtn");
+    game.RestartGame();
 }
 
 document.querySelector("#restartGameBtn").onclick = function() {
     var game = new CardGame();
-    game.RestartGame("#restartGameBtn");
+    game.RestartGame();
 }
 
 document.querySelector("#endGameBtn").onclick = function() {
     var game = new CardGame();
-    game.RestartGame("#endGameBtn");
+    game.RestartGame();
 }
