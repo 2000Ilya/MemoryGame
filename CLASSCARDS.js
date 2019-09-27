@@ -18,6 +18,7 @@ class CardGame {
     }
 
     CloseCards(cardIndex) {
+        document.getElementById(cardIndex).classList.remove('hover');
         document.getElementById(cardIndex).classList.toggle('hover');
     }
 
