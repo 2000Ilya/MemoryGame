@@ -2,6 +2,14 @@
   width: 100%;
   height: 100%;
   border-radius: 10px;
+  cursor: pointer;
+}
+.back:hover {
+  box-shadow: 0px 0px 20px 0px #77f400;
+}
+
+.front:hover {
+  box-shadow: 0px 0px 20px 0px white;
 }
 
 .wrapper {
@@ -81,6 +89,7 @@ body{
   padding: 10px 20px 10px 20px;
   text-align: center;
   outline: none;
+  background-color: white;
 }
 
 #startGameBtn, #memoryGameHeader, .imageOnStartScreen {
@@ -121,8 +130,21 @@ body{
   padding: 10px 30px 10px 30px;
   text-align: center;
   outline: none;
+  background-color: white;
 }
 
 .imageOnEndScreen, #endGameBtn, #memoryGameEndHeader {
   display: none;
+}
+
+#endGameBtn:hover, #startGameBtn:hover {
+  background-color: #1C7430;
+  color: white;
+  cursor: pointer;
+}
+
+#restartGameBtn:hover {
+  background-color: white;
+  color: #1C7430;
+  cursor: pointer;
 }
